@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateMovieRequest;
 use App\Models\Movie;
+use Symfony\Component\VarDumper\VarDumper;
 
 class MoviesController extends Controller
 {
@@ -26,7 +28,7 @@ class MoviesController extends Controller
      */
     public function create()
     {
-        //
+        return view('movies.create');
     }
 
     /**
@@ -35,9 +37,17 @@ class MoviesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateMovieRequest $request)
     {
-        //
+        $data = $request->validated();
+
+    //    info($data);
+
+        // $data = $request->all();
+
+        Movie::create($data);
+
+        return redirect('/movies');
     }
 
     /**
