@@ -17,7 +17,7 @@ class CreateCommentsTable extends Migration
             $table->id();
             $table->foreignId('movie_id')->constrained()->onDelete('cascade');
             $table->string('content');
-            $table->date('created_at');
+            $table->timestamps();
             
         });
     }
